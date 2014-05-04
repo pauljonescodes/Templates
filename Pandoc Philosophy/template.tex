@@ -1,19 +1,31 @@
-\documentclass[12pt, man]{apa6}
+\documentclass[a4paper,11pt]{article}
 
 \usepackage{lmodern}
 
-\usepackage{amsmath,amsthm,amssymb}
-\usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
-% use upquote if available, for straight quotes in verbatim environments
+\hyphenation{Bayes-ian}
+\hyphenation{Bayes-ian-ism}
+
+\usepackage{tikz}
+
+\usepackage{endnotes}
+\usepackage{philosophy}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{ifxetex}
+\usepackage{ifluatex}
+\usepackage{fixltx2e} 
+
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
+
 $if(euro)$
   \usepackage{eurosym}
 $endif$
-\else % if luatex or xelatex
+
+\else
   \ifxetex
     \usepackage{mathspec}
     \usepackage{xltxtra,xunicode}
@@ -22,12 +34,15 @@ $endif$
   \fi
   \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
   \newcommand{\euro}{€}
+
 $if(mainfont)$
     \setmainfont{$mainfont$}
 $endif$
+
 $if(sansfont)$
     \setsansfont{$sansfont$}
 $endif$
+
 $if(monofont)$
     \setmonofont[Mapping=tex-ansi]{$monofont$}
 $endif$
@@ -35,42 +50,40 @@ $if(mathfont)$
     \setmathfont(Digits,Latin,Greek){$mathfont$}
 $endif$
 \fi
-% use microtype if available
+
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
-$if(geometry)$
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-$endif$
-$if(natbib)$
+
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in,headheight=0in,headsep=0in,footskip=.5in}
+
 \usepackage{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-$if(biblatex)$
-\usepackage{biblatex}
-$if(biblio-files)$
-\bibliography{$biblio-files$}
-$endif$
-$endif$
+\bibpunct{(}{)}{,}{a}{}{,}
+
+\bibliography{biblio.bib}
+
 $if(listings)$
 \usepackage{listings}
 $endif$
+
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
 $endif$
+
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
+
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
+
 $if(tables)$
 \usepackage{longtable,booktabs}
 $endif$
+
 $if(graphics)$
 \usepackage{graphicx}
-% Redefine \includegraphics so that, unless explicit options are
-% given, the image width will not exceed the width of the page.
-% Images get their normal width if they fit onto the page, but
-% are scaled down if they would overflow the margins.
+
 \makeatletter
 \def\ScaleIfNeeded{%
   \ifdim\Gin@nat@width>\linewidth
@@ -86,43 +99,34 @@ $if(graphics)$
  \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
 }%
 $endif$
+
 \ifxetex
-  \usepackage[setpagesize=false, % page size defined by xetex
-              unicode=false, % unicode breaks when used with xetex
+  \usepackage[setpagesize=false,
+              unicode=false,
               xetex]{hyperref}
 \else
   \usepackage[unicode=true]{hyperref}
 \fi
-\hypersetup{breaklinks=true,
-            bookmarks=true,
-            pdfauthor={$author-meta$},
-            pdftitle={$title-meta$},
-            colorlinks=true,
-            citecolor=$if(citecolor)$$citecolor$$else$blue$endif$,
-            urlcolor=$if(urlcolor)$$urlcolor$$else$blue$endif$,
-            linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,
-            pdfborder={0 0 0}}
-\urlstyle{same}  % don't use monospace font for urls
+
+\urlstyle{same}
+
 $if(links-as-notes)$
-% Make links footnotes instead of hotlinks:
 \renewcommand{\href}[2]{#2\footnote{\url{#1}}}
 $endif$
+
 $if(strikeout)$
 \usepackage[normalem]{ulem}
-% avoid problems with \sout in headers with hyperref:
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
+
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-$if(numbersections)$
-\setcounter{secnumdepth}{5}
-$else$
-\setcounter{secnumdepth}{0}
-$endif$
+\setlength{\emergencystretch}{3em}
+
 $if(verbatim-in-note)$
-\VerbatimFootnotes % allows verbatim text in footnotes
+\VerbatimFootnotes 
 $endif$
+
 $if(lang)$
 \ifxetex
   \usepackage{polyglossia}
@@ -132,32 +136,37 @@ $if(lang)$
 \fi
 $endif$
 
-
+\renewcommand\thefootnote{\textcolor{black}{\arabic{footnote}}}
 
 $for(header-includes)$
 $header-includes$
 $endfor$
 
-% start my changes
+\newtheorem{proposition}{\textbf{Proposition}}[section]
+\newtheorem{theorem}[proposition]{\textbf{Theorem}}
+\newtheorem{claim}[proposition]{\textbf{Claim}}
+\newtheorem{lemma}[proposition]{\textbf{Lemma}}
+\newtheorem{definition}[proposition]{\textbf{Definition}}
+\newtheorem{example}[proposition]{\textbf{Example}}
+\newtheorem{corollary}[proposition]{\textbf{Corollary}}
+\newtheorem{principle}[proposition]{\textbf{Principle}}
+\newtheorem{remark}[proposition]{\textbf{Remark}}
+\newtheorem{algorithm}[proposition]{\textbf{Algorithm}}
+\newtheorem{observation}[proposition]{\textbf{Observation}}
 
-\title{$title.long$}
-\author{$author.first$ $author.last$ \\ $class$}
-\date{\today}
+\setmainfont{Linux Libertine}
+\setmathrm{Linux Libertine}
+\setmathfont(Digits,Latin){Linux Libertine}
+\defaultfontfeatures{Ligatures=TeX}
 
-\affiliation{$professor$\\$affiliation$}
+\title{$title$}
+\author{$author$ \\ {\small  $class$} \\ {\small $professor$} \\ {\small $affiliation$}}
 
-\rightheader{$author.last$} % Lastname
-
-\shorttitle{$title.short$} % Short title
-\rightheader{$title.short$} % Short title
-
-\renewcommand\thefootnote{\textcolor{black}{\arabic{footnote}}}
-
-
-
-% end my changes
+\usepackage{setspace}
 
 \begin{document}
+
+\pagestyle{plain}
 
 \maketitle
 
@@ -165,17 +174,21 @@ $for(include-before)$
 $include-before$
 $endfor$
 
+%\begin{abstract}
+%\end{abstract}
+
 $if(toc)$
 {
+\clearpage
 \hypersetup{linkcolor=black}
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
+\clearpage
 }
 $endif$
+
 $body$
 
-$if(natbib)$
-$if(biblio-files)$
 $if(biblio-title)$
 $if(book-class)$
 \renewcommand\bibname{$biblio-title$}
@@ -185,12 +198,6 @@ $endif$
 $endif$
 \bibliography{$biblio-files$}
 
-$endif$
-$endif$
-$if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-
-$endif$
 
 $for(include-after)$
 $include-after$
