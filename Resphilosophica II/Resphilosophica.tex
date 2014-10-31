@@ -1,0 +1,92 @@
+%
+\documentclass[letterpaper,12pt]{resphilosophica} %options: [a4paper, leqno, 11pt]
+%\documentclass[letterpaper, 12pt]{amsart}
+%\usepackage{endnotes,philosophy}
+\usepackage{scalefnt}
+
+% -----Page Style-------------
+\pagestyle{plain}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+% -----Symbols----------------
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{titlesec}
+\DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n}
+\DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
+\DeclareMathSymbol{\boxright}{\mathrel}{symbolsC}{128}
+%$\boxright$\\
+%$\strictif$
+
+% -----Bibliography----------
+
+\usepackage{natbib}
+%\bibliographystyle{OUPnum}
+%\bibliographystyle{apalike}
+\bibliographystyle{resphilosophica}
+% \citet{Smith:2005}	 ==> Smith (2005)
+% \citep{Smith:2005}	 ==> (Smith, 2005)
+% \citep[see][ ]{Smith:2005} ==> (see Smith, 1990)
+% \citeyearpar{Smith:2005}	==> (2005)
+\setcitestyle{aysep={}}
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\bibpunct{(}{)}{,}{a}{}{,}
+\usepackage{amssymb}
+\usepackage{gn-logic14}
+\usepackage{turnstile}
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%\renewcommand{\labelenumi}{(\alph{enumi})} % enumerate in alpha characters
+\newcommand{\Diamondright}{\Diamond \!\!\!\rightarrow}
+\newcommand{\set}[2]{\left\{#1\colon#2\right\}}
+\newcommand{\ntuple}[2]{{\sf #1}_{1},\ldots,{\sf #1}_{#2}}
+\def\crs{\mathbb{K}}	
+\newcommand{\cdagger}{\bm{\mathrm c^\dagger}}	
+\newcommand{\cstar}{\bm{\mathrm c^*}}
+\def\Gd{\Gamma_{\delta}} 
+\newcommand\ind{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{
+\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand{\nmc}{\,\mid\!\approx\,}
+
+\titleformat{\section}[block]
+{\Large\bfseries}{\S \thesection}{.5em}{}
+
+\title{\scalefont{1.0} \textbf{The Essentiality of Faux Titles in Post-Modern \LaTeX}\normalsize}
+\author{Paul M. Jones}
+\date{\today} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+%%%%%%%%%%%%%
+%%% DOCUMENT %%
+%%%%%%%%%%%%%
+
+\begin{document}
+%\pagestyle{empty}
+\pagestyle{plain}
+
+\maketitle
+\thispagestyle{empty}
+%\begin{abstract}
+
+%\end{abstract}
+
+%\tableofcontent
+
+\Blinddocument
+
+%%%%Endmaterial%%%
+%\noteshere
+\newpage
+\bibliographystyle{resphilosophica}
+\bibliography{biblio}
+\end{document}
